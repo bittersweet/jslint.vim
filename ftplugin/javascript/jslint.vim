@@ -155,6 +155,12 @@ function! s:JSLint()
       endif
       " Add line to match list
       call add(b:matched, s:matchDict)
+
+      " Create empty quickfix window
+      cexpr []
+
+      " Add errors to quickfix
+      caddexpr expand("%") . ":" . l:line . ":" . b:parts[2] . ":" . b:parts[3]
     endif
   endfor
   let b:cleared = 0
